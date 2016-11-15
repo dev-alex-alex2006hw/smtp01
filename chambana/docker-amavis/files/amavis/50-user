@@ -1,0 +1,59 @@
+use strict;
+
+# You can modify this file to re-enable SPAM checking through spamassassin
+# and to re-enable antivirus checking.
+
+#
+# Default antivirus checking mode
+# Please note, that anti-virus checking is DISABLED by 
+# default.
+# If You wish to enable it, please uncomment the following lines:
+
+
+@bypass_virus_checks_maps = (
+   \%bypass_virus_checks, \@bypass_virus_checks_acl, \$bypass_virus_checks_re);
+
+
+#
+# Default SPAM checking mode
+# Please note, that anti-spam checking is DISABLED by 
+# default.
+# If You wish to enable it, please uncomment the following lines:
+
+
+@bypass_spam_checks_maps = (
+   \%bypass_spam_checks, \@bypass_spam_checks_acl, \$bypass_spam_checks_re);
+
+# Bind to all addresses
+
+$inet_socket_bind = undef;
+
+# Accept only from local RFC1918 networks
+
+@inet_acl = qw( 127/8 10/8 172.16/12 192.168/16 );
+
+# Reinject email into postfix
+
+$notify_method = 'smtp:*:*';
+$forward_method = 'smtp:*:*';
+
+$sa_tag_level_deflt = -9999; # always add spam info headers
+$sa_tag2_level_deflt = 5.00; # Lower threshold to 5.00
+
+# Don't quarantine mail, just deliver it to spam folder.
+$spam_quarantine_method = undef;
+
+# Don't change subject, just use headers.
+$sa_spam_subject_tag = undef;
+
+# Turn off "UNCHECKED" notifications for encrypted messages.
+$admin_maps_by_ccat{+CC_UNCHECKED.',1'} = undef;
+
+# Remove "UNCHECKED" from subject line.
+$undecipherable_subject_tag = undef;
+
+# Try and eliminate backscatter UBE messages, only applicable because we PASS spam email
+$warnspamsender = undef;
+$warnvirussender = undef;
+
+1;  # ensure a defined return
