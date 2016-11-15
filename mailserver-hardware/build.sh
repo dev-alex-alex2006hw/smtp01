@@ -1,1 +1,1 @@
-docker build -t registry.ng.bluemix.net/pointlookdev/smtp .
+docker build -t smtp .

@@ -1,8 +1,8 @@
 version: '2'
 services:
   mailserver:
-    image: hardware/mailserver
-    container_name: mailserver
+    image: smtp
+    container_name: smtp
     domainname: clouderg.com    # Mail server FQDN & reverse = mail.domain.tld.
     hostname: smtp
     # restart: always
@@ -81,7 +81,7 @@ services:
     # restart: always
     # Info : These variables are ignored when the volume already exists (databases created before).
     environment:
-        - MYSQL_ROOT_PASSWORD=00zulu-clouderg
+      - MYSQL_ROOT_PASSWORD=00zulu-clouderg
       - MYSQL_DATABASE=postfix
       - MYSQL_USER=postfix
       - MYSQL_PASSWORD=00zulu-clouderg
