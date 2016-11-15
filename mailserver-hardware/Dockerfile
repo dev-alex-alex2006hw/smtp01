@@ -12,6 +12,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-
     supervisor openssl rsyslog python-pip \
     pigz pxz pbzip2 \
     wget ca-certificates dnsutils 
+RUN pip install --upgrade pip
 RUN pip install envtpl
 RUN wget -q https://github.com/krallin/tini/releases/download/v$TINI_VER/tini_$TINI_VER.deb -P /tmp
 RUN dpkg -i /tmp/tini_$TINI_VER.deb
